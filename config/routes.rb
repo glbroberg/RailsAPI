@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   # get '/articles', to: 'articles#index'
 
   # Option 2: Using Resources Helper
-  resources :articles, only: [:index, :show] # This option creates actions for all CRUD actions
+  # resources :article # By default, this creates routes for all CRUD actions
+  resources :articles, only: [:index, :show] # This only creates 'get articles/' (index) and 'get articles/id' (show)
 
 end
