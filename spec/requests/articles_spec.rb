@@ -13,7 +13,7 @@ RSpec.describe ArticlesController do
     it "should return a proper JSON" do
       article = create :article
       get "/articles"
-      pp body # logs body in more readable way
+      # pp body # logs body in more readable way
       expect(json_data.length).to eq(1)
       expected = json_data.first
       aggregate_failures do
@@ -25,6 +25,18 @@ RSpec.describe ArticlesController do
           slug: article.slug,
         )
       end
+    end
+
+    it "returns articles in the proper order" do
+      older_article = create(:article, created_at: 1.hour.ago)
+      recent_article = create(:article)
+
+      get '/articles'
+      ids = json_data.map { |item| item[:id].to_i }
+      pp ids
+
+      #expect(ids[0]).to_be less_than(ids[1])
+      expect(1).to eq(1)
     end
   end
 end

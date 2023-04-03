@@ -4,6 +4,6 @@ class ArticlesController < ApplicationController
   end
 
   def serializer 
-    ArticleSerializer
+    ArticleSerializer 
   end
 end
